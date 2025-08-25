@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-gradient: radial-gradient(circle at 30% 30%, #1e3a8a 0%, #0f172a 60%, #020617 100%);
+}
+
+html[dir='rtl'] {
+  font-family: 'Cairo', 'Tajawal', 'Almarai', sans-serif;
+}
+
+body {
+  @apply bg-slate-950 text-slate-100 antialiased;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+}
+
+/* Smooth fade-in */
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+@keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+
+.gradient-text {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(to left, theme('colors.brand.300'), theme('colors.brand.600'));
+}
+
+.section-padding { @apply py-20 md:py-28; }
+
+.container-fixed { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+
+/* Glass panel */
+.glass {
+  @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-xl;
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0f172a; }
+::-webkit-scrollbar-thumb { background: #1e3a8a; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #1d4ed8; }
