@@ -24,8 +24,8 @@ export default function Contact() {
           <p className="text-slate-300 leading-relaxed">شارِكنا احتياجك التقني لنساعدك في بناء الحل الأمثل.</p>
           <div className="glass p-6 rounded-xl space-y-4 text-slate-200 text-sm leading-relaxed">
             <p><span className="font-semibold text-brand-300">البريد:</span> contact@agentic-ai.example</p>
-            <p><span className="font-semibold text-brand-300">الهاتف:</span> ‎+966-555-000000</p>
-            <p><span className="font-semibold text-brand-300">العنوان:</span> الرياض، المملكة العربية السعودية</p>
+            <p><span className="font-semibold text-brand-300">الهاتف:</span> ‎+968-5556-0000</p>
+            <p><span className="font-semibold text-brand-300">العنوان:</span> نزوى، سلطنة عمان</p>
           </div>
         </div>
         <form onSubmit={onSubmit} className="glass p-8 rounded-2xl space-y-6" aria-label="نموذج التواصل">
