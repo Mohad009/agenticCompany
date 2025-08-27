@@ -2,12 +2,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
+// Use absolute root anchors so navigation works from nested routes (e.g., /courses/[id])
 const links = [
-  { href: '#home', label: 'الرئيسية' },
-  { href: '#courses', label: 'الدورات', hasMenu: true },
-  { href: '#services', label: 'الخدمات' },
-  { href: '#about', label: 'من نحن' },
-  { href: '#contact', label: 'تواصل معنا' }
+  { href: '/#home', label: 'الرئيسية' },
+  { href: '/#courses', label: 'الدورات', hasMenu: true },
+  { href: '/#services', label: 'الخدمات' },
+  { href: '/#about', label: 'من نحن' },
+  { href: '/#contact', label: 'تواصل معنا' }
 ];
 
 const courseItems = [
@@ -86,7 +87,7 @@ export default function NavBar() {
                         {courseItems.map(ci => (
                           <a
                             key={ci.id}
-                            href={`#${ci.id}`}
+                            href={`/#${ci.id}`}
                             className="group block rounded-lg px-3 py-2 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-brand-500 outline-none transition"
                             role="menuitem"
                             onClick={() => setCoursesOpen(false)}
