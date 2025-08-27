@@ -1,13 +1,15 @@
 "use client";
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
+// Use absolute root anchors so navigation works from nested routes (e.g., /courses/[id])
 const links = [
-  { href: '#home', label: 'الرئيسية' },
-  { href: '#courses', label: 'الدورات', hasMenu: true },
-  { href: '#services', label: 'الخدمات' },
-  { href: '#about', label: 'من نحن' },
-  { href: '#contact', label: 'تواصل معنا' }
+  { href: '/#home', label: 'الرئيسية' },
+  { href: '/#courses', label: 'الدورات', hasMenu: true },
+  { href: '/#services', label: 'الخدمات' },
+  { href: '/#about', label: 'من نحن' },
+  { href: '/#contact', label: 'تواصل معنا' }
 ];
 
 const courseItems = [
@@ -84,16 +86,16 @@ export default function NavBar() {
                     >
                       <div className="flex flex-col gap-3">
                         {courseItems.map(ci => (
-                          <a
+                          <Link
                             key={ci.id}
-                            href={`#${ci.id}`}
+                            href={`/courses/${ci.id}`}
                             className="group block rounded-lg px-3 py-2 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-brand-500 outline-none transition"
                             role="menuitem"
                             onClick={() => setCoursesOpen(false)}
                           >
                             <div className="font-semibold text-slate-100 group-hover:text-brand-300 mb-0.5 text-sm">{ci.label}</div>
                             <p className="text-xs text-slate-400 leading-relaxed group-hover:text-slate-300">{ci.desc}</p>
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </motion.div>

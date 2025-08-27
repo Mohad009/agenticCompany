@@ -1,25 +1,12 @@
 "use client";
 import { motion } from 'framer-motion';
 
-const courses = [
-  {
-    id: 'course-cyber',
-    title: 'الأمن السيبراني',
-    desc: 'أساسيات التهديدات، إدارة الثغرات، اختبار الاختراق، بناء سياسات الأمان.'
-  },
-  {
-    id: 'course-ai',
-    title: 'الذكاء الاصطناعي',
-    desc: 'خوارزميات تعلم الآلة، الشبكات العصبية، بناء وكلاء ذكيين وتحليل البيانات.'
-  },
-  {
-    id: 'course-design',
-    title: 'التصميم',
-    desc: 'مبادئ تصميم الواجهات UX/UI، النماذج الأولية، وتحسين تجربة المستخدم.'
-  }
-];
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { courses } from '../lib/courses';
 
 export default function Courses() {
+  const router = useRouter();
   return (
     <section id="courses" className="section-padding">
       <div className="container-fixed">
@@ -36,16 +23,27 @@ export default function Courses() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ delay: i * 0.05 }}
-              className="group relative glass p-6 rounded-2xl overflow-hidden min-h-[240px] flex flex-col"
+              className="group relative glass p-6 rounded-2xl overflow-hidden min-h-[260px] flex flex-col cursor-pointer focus-within:ring-2 focus-within:ring-brand-500 outline-none"
+              role="button"
+              tabIndex={0}
+              aria-label={`فتح تفاصيل دورة ${c.title}`}
+              onClick={() => router.push(`/courses/${c.id}`)}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); router.push(`/courses/${c.id}`); } }}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-brand-600/0 via-brand-600/0 to-brand-600/0 group-hover:via-brand-600/10 group-hover:to-brand-600/20 transition" />
               <h3 className="font-semibold text-xl mb-3 text-brand-300">{c.title}</h3>
-              <p className="text-sm text-slate-300 leading-relaxed flex-1">{c.desc}</p>
+              <p className="text-sm text-slate-300 leading-relaxed flex-1">{c.shortDesc}</p>
               <div className="mt-6">
-                <a href="#contact" className="inline-flex items-center gap-1 text-sm font-semibold text-brand-300 hover:text-brand-200 focus-visible:ring-2 focus-visible:ring-brand-500 rounded">
-                  اطلب تفاصيل
-                  <span aria-hidden>→</span>
-                </a>
+                <div>
+                  <button
+                    type="button"
+                    onClick={(e) => { e.stopPropagation(); router.push(`/courses/${c.id}`); }}
+                    className="inline-flex items-center gap-1 text-xs font-semibold px-4 py-2 rounded-md bg-brand-600/20 text-brand-200 hover:bg-brand-600/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 transition"
+                  >
+                    تفاصيل الدورة
+                    <span aria-hidden>→</span>
+                  </button>
+                </div>
               </div>
             </motion.div>
           ))}
